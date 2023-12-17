@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 
-int FGetLine(char* line_, FILE* f_)
+char* FGetLine(char* line_, FILE* f_)
 {
 	char* lineCopy = line_;
 	if (f_ == NULL)
@@ -25,7 +25,7 @@ int FGetLine(char* line_, FILE* f_)
 	}
 	*lineCopy = '\0';
 
-	return strlen(line_);
+	return line_;
 }
 
 char* myStrCpy(char* fLine_, char* sLine_)
@@ -107,12 +107,40 @@ char* myStrStr(char* fLine_, char* sLine_)
 
 char* putSpace(char* line_)
 {
-	char* trust = malloc(sizeof(char*));
-	int n = myStrLen(line_);
+	if (!line_)
+	{
+		perror("");
+		return 0;
+	}
+	int n = strlen(line_);
+	int size = malloc(sizeof(strlen(line_) * 2));
+	char* trust = size;
 	for (int i = 0; i < n; i++)
 	{
 		trust[i * 2] = line_[i];
 		trust[i * 2 + 1] = ' ';
 	}
+	//trust[size - 1] = '\0'; не работает
 	return trust;
 }
+
+void writeStruct(FILE* f_, struct footballPlayers* players_)
+{
+	char* surname = "123";
+	char* day = "123";
+	char* month = "123";
+	char* year = "123";
+	char* role = "";
+	char* pob = "";
+	surname = FGetLine(surname, f_);
+	day = FGetLine(day, f_);
+	month = FGetLine(month, f_);
+	year = FGetLine(year, f_);
+	role = FGetLine(role, f_);
+	pob = FGetLine(pob, f_);
+
+	//players_[1].surname = surname;
+	//printf(name);
+}
+
+

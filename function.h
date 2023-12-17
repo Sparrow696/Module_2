@@ -5,13 +5,23 @@
 #ifndef _FUNCTION_H_
 #define _FUNCTION_H_
 
+struct footballPlayers {
+	char* surname;
+	int dob_day;
+	int dob_month;
+	int dob_year;
+	char* role;
+	int amountGame;
+	char* PoB;
+};
+
 /*
 * @brief —читывает строку из файла.
 * @param line_ : строка куда считываем.
 * @param f_ : файл откуда считывать строку.
 * @return кол-во считываемых символов.
 */
-int FGetLine(char* line_, FILE* f_);
+char* FGetLine(char* line_, FILE* f_);
 
 /*
 * @brief копирует fLine_ в sLine_
@@ -58,5 +68,13 @@ char* myStrStr(char* fLine_, char* sLine_);
 * @return готова€ строка
 */
 char* putSpace(char* line_);
+
+/*
+* @brief —читывает структуру из файла.
+* @param f_ : файл откуда считывать.
+* @param players : структура.
+* @return кол-во считываемых символов.
+*/
+void writeStruct(FILE* f, struct footballPlayers *players_);
 #endif // !_FUNCTION_H_
 

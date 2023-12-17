@@ -7,22 +7,10 @@
 
 #define SIZE 2
 #pragma warning( disable : 4996)
-struct date {
-	int day;
-	int month;
-	int year;
-};
-
-struct footballPlayers {
-	char* surname;
-	struct date DoB;
-	char* role;
-	int amountGame;
-	char* PoB;
-}; struct footballPlayers players[];
 
 int main()
 {
+	struct footballPlayers players[50];
 	setlocale(LC_ALL, "Rus");
 	char line[100] = "31212344";
 	char line2[100] = "12";
@@ -33,15 +21,16 @@ int main()
 	//printf("\n%s", myStrCut(line2,line));
 	//printf("\n%d", myStrCmp(line, line2));
 
-	//FILE* file;
-	//fopen_s(&file, "file.txt", "r");
-	//if (!file)
-	//{
-	//	perror("f == NULL!");
-	//	return 1;
-	//}
-	//printf("%d\n", FGetLine(line, file));
+	FILE* file;
+	fopen_s(&file, "structFP.txt", "r+");
+	if (!file)
+	{
+		perror("f == NULL!");
+		return 1;
+	}
+	//printf("%s\n", FGetLine(line, file));
 	//printf("%s\n", line);
-	//fclose(file);
+	writeStruct(file, players);
+	fclose(file);
 	return 0;
 }
